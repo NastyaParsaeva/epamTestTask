@@ -15,15 +15,20 @@ body {
 
 .user-cart {
     display: flex;
+    align-items: center;
+    border: 1px solid #0d0409;
+}
+
+.user-cart:hover {
+    border: 1px solid #11a6c4;
+    border-radius: 50px;
 }
 
 .overflow {
     display: none;
-    position: absolute;
+    position: fixed;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    /* background-color: white; */
     top: 0;
     left: 0;
     bottom: 0;
@@ -33,7 +38,6 @@ body {
   
 #user-popup {
     display: flex;
-    align-items: center;
     min-width: 500px;
     flex-direction: column;
     position: fixed;
@@ -42,9 +46,13 @@ body {
     border-radius: 10px;
 }
 
+#user-popup .user-full-name {
+    align-self: center;
+}
+
 .user-full-info {
     display: flex;
-    align-items: center;
+    justify-content: flex-start;
 
 }
 
@@ -58,7 +66,7 @@ a {
 }
 
 h1 {
-    margin: 0px;
+    
 }
 
 figure {
@@ -67,4 +75,29 @@ figure {
 
 .round-avatar {
     border-radius: 50%;
+}
+
+
+#close-popup {
+    background: #11a6c4 url(../assets/white-cross-icon.png) center center no-repeat;
+    width: 35px;
+    height: 35px;
+    margin: -15px -15px 0 0;
+    display: block;
+    float: right;
+    border: 3px solid #f2f3f4;
+    border-radius: 50%;
+    background-size: 15px;
+    position: absolute;
+    right: 0;
+}
+
+select { 
+    border-radius: 15px;
+    border: 0px;
+    height: 32px;
+    font-size: 1.5em;
+    color: #f2f3f4;
+    background-color: #11a6c4;
+    margin: 15px;
 }
