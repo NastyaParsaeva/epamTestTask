@@ -21,7 +21,7 @@ class Renderer {
         let id = 0;
         return userList.reduce((accum, element) => {
             return (isDesc) ? accum = (this._htmlTemplatesCreator.createUserCartHtml(element, id++) + accum) :
-                    accum += this._htmlTemplatesCreator.createUserCartHtml(element, id++);
+                accum += this._htmlTemplatesCreator.createUserCartHtml(element, id++);
         }, '');
     }
 

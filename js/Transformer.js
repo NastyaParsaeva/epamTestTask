@@ -22,18 +22,17 @@ class Transformer {
     sortUsersAsc() {
         this._usersData.sort(function (a, b) {
             if ((a.name.first + a.name.last) > (b.name.first + b.name.last)) {
-              return 1;
+                return 1;
             }
             if ((a.name.first + a.name.last) < (b.name.first + b.name.last)) {
-              return -1;
+                return -1;
             }
             return 0;
-          });
+        });
     }
 
     showUserPopup() {
         document.querySelector('#overflow').style.display = 'flex';
-        document.getElementById('overflow').addEventListener('click', this.overflowClickHandler);
         document.getElementById('close-popup').addEventListener('click', this.closePopup.bind(this));
     }
 
@@ -46,18 +45,16 @@ class Transformer {
 
     capitalizeFirstLetter(string) {
         return (string.charAt(0).toUpperCase() + string.slice(1));
+    };
+
+    closePopup = () => {
+        console.log(this);
+        document.querySelector('#overflow').style.display = 'none';
     }
 
-    overflowClickHandler = (event) => {
+    overflowClickHandler = ((event) => {
         if (event.target.id === 'overflow') {
             this.closePopup();
         }
-    }
-
-    closePopup = () => {
-        document.querySelector('#overflow').style.display = 'none';
-        document.getElementById('overflow').removeEventListener('click', this.overflowClickHandler);
-        console.log(this);
-    }
-
+    })
 }

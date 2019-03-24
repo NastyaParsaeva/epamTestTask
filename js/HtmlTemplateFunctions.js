@@ -23,7 +23,7 @@ class HtmlTemplateFunctionsCreator {
         return `<select>
                     <option>A-Z, asc</option>
                     <option>A-Z, desc</option>
-                </select>`
+                </select>`;
     }
 
     createUserPopupHtml(userInfo) {
