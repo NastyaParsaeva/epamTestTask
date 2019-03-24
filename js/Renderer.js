@@ -1,7 +1,7 @@
 class Renderer {
 
     constructor() {
-        this.htmlTemplatesCreator = new HtmlTemplateFunctionsCreator();
+        this._htmlTemplatesCreator = new HtmlTemplateFunctionsCreator();
     }
 
     insertElementIntoDom(id, innerHtml) {
@@ -9,44 +9,24 @@ class Renderer {
     }
 
     renderMainContent() {
-        this.insertElementIntoDom('main-content', this.htmlTemplatesCreator.createMainContent());
+        this.insertElementIntoDom('main-content', this._htmlTemplatesCreator.createMainContent());
     }
 
     renderUserList(userList, isDesc) {
-        console.log(userList);
         const userListHtml = this.showSortedUsers(userList, isDesc);        
         this.insertElementIntoDom('user-list', userListHtml);
-        this.addUserCartListener(userList);
     } 
 
     showSortedUsers(userList, isDesc) {     
         let id = 0;
         return userList.reduce((accum, element) => {
-            return (isDesc) ? accum = (this.htmlTemplatesCreator.createUserCartHtml(element, id++) + accum) :
-                    accum += this.htmlTemplatesCreator.createUserCartHtml(element, id++);
+            return (isDesc) ? accum = (this._htmlTemplatesCreator.createUserCartHtml(element, id++) + accum) :
+                    accum += this._htmlTemplatesCreator.createUserCartHtml(element, id++);
         }, '');
     }
 
-    renderUserPopup(userList, id) {
-        this.insertElementIntoDom('user-popup', this.htmlTemplatesCreator.createUserPopupHtml(userList[id]));
+    renderUserPopup(userData) {
+        this.insertElementIntoDom('user-popup', this._htmlTemplatesCreator.createUserPopupHtml(userData));
     }
 
-    showUserPopup(userList, id) {
-        document.querySelector('.overflow').style.display = 'flex';
-        this.renderUserPopup(userList, id)
-        document.getElementById('close-popup').addEventListener('click', this.closePopup);
-    }
-
-    closePopup() {
-        document.querySelector('.overflow').style.display = 'none';
-    }
-
-    addUserCartListener(userList) {
-        const userCartArray = document.querySelectorAll('.user-cart');
-        userCartArray.forEach(element => {
-            element.addEventListener('click', () => {
-                this.showUserPopup(userList, event.currentTarget.id);
-            })
-        });
-    }
 }
