@@ -10,7 +10,7 @@ function init() {
     mainTransformer.usersData = userList;
     mainRenderer.renderUserList(mainTransformer.usersData);
     addUserCartListener();
-    document.getElementById('sort-direction').addEventListener('change', function() {
+    document.getElementById('sort-direction').addEventListener('change', (event) => {
         (event.currentTarget.value === 'A-Z, desc') ? mainRenderer.renderUserList(mainTransformer.usersData, true) : mainRenderer.renderUserList(mainTransformer.usersData);
         addUserCartListener();
         });
@@ -19,7 +19,7 @@ function init() {
 function addUserCartListener() {
     const userCartArray = document.querySelectorAll('.user-cart');
     userCartArray.forEach(element => {
-        element.addEventListener('click', () => {
+        element.addEventListener('click', (event) => {
             mainRenderer.renderUserPopup(mainTransformer.usersData[event.currentTarget.id]);
             mainTransformer.showUserPopup();
         })

@@ -31,14 +31,10 @@ class Transformer {
           });
     }
 
-
     showUserPopup() {
-        document.querySelector('.overflow').style.display = 'flex';
-        document.getElementById('close-popup').addEventListener('click', this.closePopup);
-    }
-
-    closePopup() {
-        document.querySelector('.overflow').style.display = 'none';
+        document.querySelector('#overflow').style.display = 'flex';
+        document.getElementById('overflow').addEventListener('click', this.overflowClickHandler);
+        document.getElementById('close-popup').addEventListener('click', this.closePopup.bind(this));
     }
 
     capitalizeFirstLettersOfProperties(object) {
@@ -50,6 +46,18 @@ class Transformer {
 
     capitalizeFirstLetter(string) {
         return (string.charAt(0).toUpperCase() + string.slice(1));
+    }
+
+    overflowClickHandler = (event) => {
+        if (event.target.id === 'overflow') {
+            this.closePopup();
+        }
+    }
+
+    closePopup = () => {
+        document.querySelector('#overflow').style.display = 'none';
+        document.getElementById('overflow').removeEventListener('click', this.overflowClickHandler);
+        console.log(this);
     }
 
 }
