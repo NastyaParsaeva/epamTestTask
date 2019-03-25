@@ -50,6 +50,7 @@ figure {
 .user-full-info {
     display: flex;
     justify-content: flex-start;
+    flex-wrap: wrap;
 }
 
 #overflow {
@@ -108,3 +109,23 @@ figure {
     width: 350px;
 }
 
+@media screen and (max-width: 550px) {
+    #user-popup {
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        min-width: unset;
+        border-radius: 0;
+    }
+
+    #close-popup {
+         margin: 7px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    #sort-direction {
+        width: 100%;
+    }
+}
