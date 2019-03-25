@@ -8,6 +8,7 @@ class Transformer {
         usersData = this.convertJsonToObject(usersData).results;
         usersData.forEach(element => {
             this.capitalizeFirstLettersOfProperties(element.name);
+            this.capitalizeFirstLettersOfProperties(element.location);
             element.fullName = `${element.name.title}. ${element.name.first} ${element.name.last}`;
         });
         
@@ -34,27 +35,39 @@ class Transformer {
     showUserPopup() {
         document.querySelector('#overflow').style.display = 'flex';
         document.getElementById('close-popup').addEventListener('click', this.closePopup.bind(this));
+        // document.getElementById('overflow').addEventListener('click', function _overflowClickHandler() {
+        //     if (event.target.id === 'overflow') {
+        //         document.getElementById('overflow').removeEventListener('click', _overflowClickHandler);
+        //         this.closePopup.bind(Transformer);
+        //     }
+        // });
     }
 
     capitalizeFirstLettersOfProperties(object) {
         const objectKeys = Object.keys(object);
         for (let i = 0; i < objectKeys.length; i++) {
-            object[objectKeys[i]] = this.capitalizeFirstLetter(object[objectKeys[i]]);
+            if (objectKeys[i] === 'street') {
+                object[objectKeys[i]] = this.capitalizeFirstLettersInSentence(object[objectKeys[i]]);
+            }
+            if (objectKeys[i] !== 'postcode') {
+                object[objectKeys[i]] = this.capitalizeFirstLetter(object[objectKeys[i]]);
+            } 
+            
         }
+    }
+
+    capitalizeFirstLettersInSentence(string) {
+        return string.split(' ')
+            .reduce((accum, word) => {
+                return accum += (` ${this.capitalizeFirstLetter(word)}`);
+            });
     }
 
     capitalizeFirstLetter(string) {
         return (string.charAt(0).toUpperCase() + string.slice(1));
     };
 
-    closePopup = () => {
-        console.log(this);
+    closePopup() {
         document.querySelector('#overflow').style.display = 'none';
     }
-
-    overflowClickHandler = ((event) => {
-        if (event.target.id === 'overflow') {
-            this.closePopup();
-        }
-    })
 }
