@@ -25,7 +25,7 @@ function addUserCartListener() {
 }
 
 function overflowListener() {
-    document.getElementById('overflow').addEventListener('click', mainTransformer.overflowClickHandler);
+    document.getElementById('overflow').addEventListener('click', mainTransformer.overflowClickHandler.bind(mainTransformer));
 }
 
 function sortDirectionListener() {

@@ -70,4 +70,10 @@ class Transformer {
     closePopup() {
         document.querySelector('#overflow').style.display = 'none';
     }
+
+    overflowClickHandler(event) {
+        if (event.target.id === 'overflow') {
+            this.closePopup();
+        }
+    }
 }
